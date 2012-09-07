@@ -18,8 +18,9 @@ body{font-family:Lucida Grande;background:#fff;}
 /**************************** Calendar ****************************/
 #calendar{
 	margin: 0 auto;
-	padding-top: 25px;
-	width: 760px;
+	padding-top: 3%;
+	width: 100%;
+	max-width: 760px;
 	text-align: center;
   	position: relative;
 }
@@ -33,18 +34,19 @@ body{font-family:Lucida Grande;background:#fff;}
 }
 #calcontainer{
 	float:left;
-	margin-bottom:10px;
+	margin-bottom:2%;
+	width: 100%;
 }
 #daysmonth{
 	clear:both;
 }
-.dayweek{width:107px;height:30px;float:left;border-right:1px solid #e5e5e5;}
+.dayweek{width:14.25%;height:30px;float:left;border-right:1px solid #e5e5e5;}
 .dayweek p{display:block;text-align:center;font-size:10px;line-height:31px;text-shadow:0 1px 0 #ffffff;}
 .week{overflow:auto;border-top:1px solid #c2c2c2;}
 .weeku{overflow:auto;border-top:1px solid #c2c2c2;border-bottom:1px solid #e5e5e5;}
 .today{background:#fffcdf;border-right:1px solid #e5e5e5;}
 .today .daybar{background:#fffac1;}
-.day{width:107px;float:left;border-right:1px solid #e5e5e5;}
+.day{width:14.25%;float:left;border-right:1px solid #e5e5e5;}
 .brn{border-right:none;}
 .bun{border-bottom:none;}
 .day:hover{background:#e9f0f8;cursor:pointer;}
@@ -53,7 +55,7 @@ body{font-family:Lucida Grande;background:#fff;}
 .dots{width:100%;height:35px;clear:both;}
 .dots ul{text-align:center;white-space:nowrap;overflow:hidden;}
 .dots ul li{margin-top:10px;display:inline-block;-webkit-border-radius:14px;width:12px;height:12px;}
-.big{width:107px;float:left;}
+.big{width:14.25%;float:left;}
 .big:hover{background:#e9f0f8;cursor:pointer;}
 .big .dots{height:65px;}
 .big .dots li{margin-top:25px;}
