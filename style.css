@@ -40,13 +40,13 @@ body{font-family:Lucida Grande;background:#fff;}
 #daysmonth{
 	clear:both;
 }
-.dayweek{width:14.25%;height:30px;float:left;border-right:1px solid #e5e5e5;}
+.dayweek{width:14.00%;height:30px;float:left;border-right:1px solid #e5e5e5;}
 .dayweek p{display:block;text-align:center;font-size:10px;line-height:31px;text-shadow:0 1px 0 #ffffff;}
 .week{overflow:auto;border-top:1px solid #c2c2c2;}
 .weeku{overflow:auto;border-top:1px solid #c2c2c2;border-bottom:1px solid #e5e5e5;}
 .today{background:#fffcdf;border-right:1px solid #e5e5e5;}
 .today .daybar{background:#fffac1;}
-.day{width:14.25%;float:left;border-right:1px solid #e5e5e5;}
+.day{width:14.00%;float:left;border-right:1px solid #e5e5e5;}
 .brn{border-right:none;}
 .bun{border-bottom:none;}
 .day:hover{background:#e9f0f8;cursor:pointer;}
@@ -54,15 +54,15 @@ body{font-family:Lucida Grande;background:#fff;}
 .daybar p{margin-left:5px;margin-top:3px;margin-bottom:3px;font-size:10px;font-weight:400;color:#969696;text-shadow:0 1px 0 #ffffff;}
 .dots{width:100%;height:35px;clear:both;}
 .dots ul{text-align:center;white-space:nowrap;overflow:hidden;}
-.dots ul li{margin-top:10px;display:inline-block;-webkit-border-radius:14px;width:12px;height:12px;}
-.big{width:14.25%;float:left;}
+.dots ul li{margin-top:10px;display:inline-block;border-radius:14px;width:12px;height:12px;}
+.big{width:14.00%;float:left;}
 .big:hover{background:#e9f0f8;cursor:pointer;}
 .big .dots{height:65px;}
 .big .dots li{margin-top:25px;}
 
 /**************************** Events when slide is open ****************************/
 .open{height:480px;border-top:1px solid #e5e5e5;float:left;clear:both;}
-.open li{-webkit-border-radius:10px;margin-left:1px;margin-right:1px;}
+.open li{border-radius:10px;margin-left:1px;margin-right:1px;}
 .open li p{width:93px;margin-top:5px;margin-left:6px;margin-right:6px;line-height:12px;font-size:10px;color:#ffffff;overflow:hidden;}
 .open li:hover{cursor:pointer;}
 
