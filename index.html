@@ -5,7 +5,11 @@
 		<title>ColorCalendar - Visualize your Calendar</title>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="main.js"></script>
-
+		
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+		<link href="main.css" rel="stylesheet">
+		
    		<script type="text/javascript">
 			function initMenu() {
 				var block = $(".day");
@@ -26,16 +30,16 @@
 		<div id="calendar">					
 			<div id="calcontainer">
 				<div id="calheader">
-					<h2>September 2012</h2>
+					<h2><button class="btn btn-small btn-primary" onclick="chMon('p');" type="button">&lt;</button><div id="mtext">September 2012</div><button onclick="chMon('n');" class="btn btn-small btn-primary" type="button">&gt;</button></h2>
 				</div>		
 				<div id="daysweek">
-					<div class="dayweek"><p>Sunday</p></div>
-					<div class="dayweek"><p>Monday</p></div>
-					<div class="dayweek"><p>Tuesday</p></div>
-					<div class="dayweek"><p>Wednesday</p></div>
-					<div class="dayweek"><p>Thursday</p></div>
-					<div class="dayweek"><p>Friday</p></div>
-					<div class="dayweek brn"><p>Saturday</p></div>
+					<div class="dayweek"><p class="g1">Sun</p></div>
+					<div class="dayweek"><p class="g1">Mon</p></div>
+					<div class="dayweek"><p class="g1">Tues</p></div>
+					<div class="dayweek"><p class="g2">Wed</p></div>
+					<div class="dayweek"><p class="g1">Thurs</p></div>
+					<div class="dayweek"><p class="g1">Fri</p></div>
+					<div class="dayweek brn"><p class="g3">Sat</p></div>
 				</div>
 				<div id="daysmonth">
 <!---------------------------------------- week 1 ---------------------------------------->
@@ -310,7 +314,7 @@
 							</div>	
 							<!-- slide closed -->
 						</div>				
-						<div class="day today big" id="day17">
+						<div class="day big" id="day17">
 							<div class="daybar"><p>16</p></div>
 							<div class="dots">
 								<ul>
@@ -731,5 +735,7 @@
 			</div>				
 		</div>	
 	</div>
+	<script src="moment.min.js"></script>
+	<script src="mousetrap.min.js"></script>
 	</body>
 </html>

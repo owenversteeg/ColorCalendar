@@ -1,25 +1,87 @@
-$(document).ready(function() {
-	var fdom = new Date(new Date().getFullYear(), new Date().getMonth(), 1).getDay()+1; //finds first day of month
+var dtu = new Date();
 
-	function refreshStuff() {
-		for (var i=1; i<43; i++) {
-			document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = ((i-fdom)+1); //labels days (with neg. #s, unfortunately)
-			if ((i-fdom)+1<1) {
-				//if there are days numbered 0 or less
-				var x = daysInMonth(new Date().getMonth(),new Date().getUTCFullYear()); //days in previous month
-				document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = (x+((i-fdom)+1)); //renumber dates before start of month correctly
-			}
-			if ((i-fdom)+1>daysInMonth(new Date().getMonth()+1,new Date().getUTCFullYear())) {
-				//if there are days numbered over the max. # of days in this month
-				document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = (((i-fdom)+1)-daysInMonth(new Date().getMonth()+1,new Date().getUTCFullYear())); //renumber dates after end of month correctly
-			}
-		}
-	}
+$(document).ready(function() {
+	//Only do this stuff when the document's ready...
+	"use strict"; //puts the browser into strict mode... helps me catch errors quicker
+	
+	Mousetrap.bind('left', function() { chMon('p'); });
+	
+	Mousetrap.bind('right', function() { chMon('n'); });
+	
+	Mousetrap.bind('up up down down left right left right b a enter', function() {
+    alert('Konami code!');
+});
+
+	resizeStuff();
 
 	refreshStuff();
 });
 
-function daysInMonth(month,year) 
-{
-   return new Date(year, month, 0).getDate();
+function daysInMonth(month,year) {
+	return new Date(year, month, 0).getDate();
+}
+
+function refreshStuff() {
+	var fdom = new Date(dtu.getFullYear(), dtu.getMonth(), 1).getDay()+1; //finds first day of month
+	
+	var dfb = 0; //days from beginning that month starts
+	
+	var mdtu = moment(dtu);
+	$('#mtext')[0].innerText = moment.months[mdtu.month()]+' '+mdtu.year();
+	
+	for (var i=1; i<43; i++) { //43 not 42 and 1 not 0 because dates are not arrayish
+		//for each of the 42 cells
+		
+		decolorize(i);
+		
+		document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = ((i-fdom)+1); //labels days (with neg. #s, unfortunately)
+		if ((i-fdom)+1<1) {
+			dfb++;
+			//if there are days numbered 0 or less
+			var x = daysInMonth(dtu.getMonth(),dtu.getUTCFullYear()); //days in previous month
+			document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = (x+((i-fdom)+1)); //renumber dates before start of month correctly
+		}
+		else if ((i-fdom)+1>daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())) {
+			//if there are days numbered over the max. # of days in this month
+			document.getElementById('day'+i).childNodes[1].childNodes[0].innerText = (((i-fdom)+1)-daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())); //renumber dates after end of month correctly
+		}
+		else {
+			colorize(i);
+		}
+	}
+	console.log(dfb);
+	if (mdtu.month() == new Date().getMonth()) {
+		$('#day'+(new Date().getDate()+dfb)).addClass('today');
+	}
+}
+
+function colorize(i) {
+	document.getElementById('day'+i).childNodes[1].childNodes[0].style.cssText += "color:black !important;";
+	document.getElementById('day'+i).childNodes[1].style.background = "#E0E0E0";
+}
+
+function decolorize(i) {
+	$('#day'+i).removeClass('today');
+	document.getElementById('day'+i).childNodes[1].childNodes[0].style.cssText += "color:#969696 !important;";
+	document.getElementById('day'+i).childNodes[1].style.background = "#F3F3F3";
+}
+	
+function chMon(p) {
+	if (p == 'p') dtu.setMonth(dtu.getMonth()-1);
+	else if (p == 'n') dtu.setMonth(dtu.getMonth()+1);
+	refreshStuff();
+}
+
+$(window).resize(function() {
+	resizeStuff();
+});
+
+function resizeStuff() {
+	$.each($('.day'), function() {
+		this.setAttribute('style', 'width:'+($('#calheader')[0].clientWidth-6)/7+'px !important');
+	});
+	
+	$.each($('.dayweek'), function() {
+		this.setAttribute('style', 'width:'+($('#calheader')[0].clientWidth-6)/7+'px !important');
+	});
 }
