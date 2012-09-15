@@ -51,7 +51,7 @@ body{font-family:Lucida Grande;background:#fff;}
 .bun{border-bottom:none;}
 .day:hover{background:#e9f0f8;cursor:pointer;}
 .daybar{width:100%;float:left;background:#f3f3f3;}
-.daybar p{margin-left:5px;margin-top:3px;margin-bottom:3px;font-size:10px;font-weight:400;color:#969696;text-shadow:0 1px 0 #ffffff;}
+.daybar p{margin-left:5px;margin-top:3px;margin-bottom:3px;font-size:10px;font-weight:400;color:#969696;}
 .dots{width:100%;height:35px;clear:both;}
 .dots ul{text-align:center;white-space:nowrap;overflow:hidden;}
 .dots ul li{margin-top:10px;display:inline-block;border-radius:14px;width:12px;height:12px;}
@@ -131,6 +131,6 @@ body{font-family:Lucida Grande;background:#fff;}
 .a24{margin-top:480px;}
 
 /**************************** Legend ****************************/
-#calcat{float:right;margin-bottom:20px;margin-right:5px;}
+#calcat{float:right;margin-right:5px;}
 #calcat p{margin-top:4px;float:left;}
 .caldot{float:left;width:12px;height:12px;border-radius:20px;margin-left:10px;margin-top:4px;margin-right:8px;}
