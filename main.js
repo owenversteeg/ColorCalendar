@@ -22,6 +22,8 @@ function daysInMonth(month,year) {
 }
 
 function refreshStuff() {
+	$('#daysweek').zoomTo({targetsize:20, duration:600});
+
 	var fdom = new Date(dtu.getFullYear(), dtu.getMonth(), 1).getDay()+1; //finds first day of month
 	
 	var dfb = 0; //days from beginning that month starts
@@ -53,6 +55,11 @@ function refreshStuff() {
 	if (mdtu.month() == new Date().getMonth()) {
 		$('#day'+(new Date().getDate()+dfb)).addClass('today');
 	}
+		setTimeout('document.body.style.webkitTransformOrigin = "";	document.body.style.webkitTransform = "";		document.body.style.operaTransformOrigin = "";	document.body.style.operaTransform = "";		document.body.style.MozTransformOrigin = "";	document.body.style.MozTransform = "";		document.body.style.transformOrigin = "";	document.body.style.transform = "";', 200);
+
+	//alert('hi');
+	
+	setTimeout('document.body.style.webkitTransformOrigin = "";	document.body.style.webkitTransform = "";		document.body.style.operaTransformOrigin = "";	document.body.style.operaTransform = "";		document.body.style.MozTransformOrigin = "";	document.body.style.MozTransform = "";		document.body.style.transformOrigin = "";	document.body.style.transform = "";', 200);
 }
 
 function colorize(i) {

@@ -29,3 +29,7 @@ body {
 #mtext {
 	display: inline;
 }
+
+#daysmonth {
+	-webkit-transition: width 1s, height 1s;
+}
