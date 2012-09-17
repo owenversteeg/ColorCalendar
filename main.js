@@ -17,6 +17,8 @@ $(document).ready(function() {
 	resizeStuff();
 
 	refreshStuff();
+	
+	refreshYears(2001);
 });
 
 function bindTouchStuff() {
@@ -74,6 +76,29 @@ function refreshStuff() {
 	setTimeout('$("#daysmonth").removeClass("zoom");', 200);
 	
 	//document.body.style.webkitTransformOrigin = "";	document.body.style.webkitTransform = "";		document.body.style.operaTransformOrigin = "";	document.body.style.operaTransform = "";		document.body.style.MozTransformOrigin = "";	document.body.style.MozTransform = "";		document.body.style.transformOrigin = "";	document.body.style.transform = "";
+}
+
+function refreshYears(start) {
+	var i = 0;
+	
+	for (var z=1; z<11; z++) {	
+		
+		//console.log($('#tr'+z)[0]);
+		$.each($('#tr'+z)[0].childNodes, function() { 
+			if (this.toString().indexOf('td') != -1) console.log(this);
+			if (this.innerText !== undefined) {
+				this.innerText = start+i;
+				i++;
+			}
+		});
+	}
+	
+	$('#ytext')[0].innerText = start + '-' + (start+99);
+}
+
+function chYr(n) {
+	if (n == 'n') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))+100)
+	if (n == 'p') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))-100)
 }
 
 function colorize(i) {

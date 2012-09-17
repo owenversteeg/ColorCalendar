@@ -24,12 +24,28 @@ body{font-family:Lucida Grande;background:#fff;}
 	text-align: center;
   	position: relative;
 }
+#yearendar{
+	margin: 0 auto;
+	padding-top: 3%;
+	width: 100%;
+	max-width: 760px;
+	text-align: center;
+  	position: relative;
+}
 #calheader{
 	width:100%;
 	height:30px;
 	text-align:center;
 }
+#yearheader{
+	width:100%;
+	height:30px;
+	text-align:center;
+}
 #calheader h2{
+	margin-top:15px;
+}
+#yearheader h2{
 	margin-top:15px;
 }
 #calcontainer{
