@@ -42,6 +42,11 @@ body {
 	transform-origin: 905.5px 285.5px; 
 	transform: translate(147.760236px, 554.713833px) rotate(-0.349043rad) skewX(0rad) scale(2.40131, 2.40131);
 }
+
+#yearendar {
+	display: none;
+}
+
 .yearendar-years {
 	border: 1px solid black;
 	margin-top: 20px;

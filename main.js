@@ -79,6 +79,7 @@ function refreshStuff() {
 }
 
 function refreshYears(start) {
+	$('#yearendar')[0].style.display = "block";
 	var i = 0;
 	
 	for (var z=1; z<11; z++) {	
@@ -94,6 +95,8 @@ function refreshYears(start) {
 	}
 	
 	$('#ytext')[0].innerText = start + '-' + (start+99);
+	
+	$('#yearendar')[0].style.display = "none";
 }
 
 function chYr(n) {
