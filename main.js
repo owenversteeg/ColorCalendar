@@ -4,9 +4,9 @@ $(document).ready(function() {
 	//Only do this stuff when the document's ready...
 	"use strict"; //puts the browser into strict mode... helps me catch errors quicker
 	
-	Mousetrap.bind('left', function() { chMon('p'); });
+	Mousetrap.bind('left', function() { if(yearsShowing) { chYr('p'); } else { chMon('p'); } });
 	
-	Mousetrap.bind('right', function() { chMon('n'); });
+	Mousetrap.bind('right', function() { if(yearsShowing) { chYr('n'); } else { chMon('n'); } });
 	
 	Mousetrap.bind('up up down down left right left right b a enter', function() {
   		alert('Konami code!');
@@ -26,15 +26,27 @@ $(document).ready(function() {
 	refreshYears(2001);
 });
 
+var yearsShowing = false;
+
 function bindTouchStuff() {
 	var hammer = new Hammer(document.getElementById("all"));
 
 	hammer.ondragstart = function(ev) { 
-		if (ev.direction == "right") {
-			chMon('p');
+		if (yearsShowing) {
+			if (ev.direction == "right") {
+				chYr('p');
+			}
+			if (ev.direction == "left") {
+				chYr('n');
+			}
 		}
-		if (ev.direction == "left") {
-			chMon('n');
+		else {
+			if (ev.direction == "right") {
+				chMon('p');
+			}
+			if (ev.direction == "left") {
+				chMon('n');
+			}
 		}
 	};
 	var hammer = new Hammer(document.getElementById("all"));
@@ -94,6 +106,7 @@ var go;
 function showYears() {
 	$('#calendar')[0].style.display = "none";
 	$('#yearendar')[0].style.display = "block";
+	yearsShowing = true;
 }
 
 function refreshYears(start) {
@@ -107,7 +120,7 @@ function refreshYears(start) {
 			if (this.toString().indexOf('td') != -1) console.log(this);
 			if (this.innerText !== undefined) {
 				this.innerText = start+i;
-				this.onclick=function () { if (go==true) { dtu.setYear(parseInt(this.innerText)); refreshStuff(); $('#yearendar')[0].style.display = "none"; $('#calendar')[0].style.display = "block"; } };
+				this.onclick=function () { if (go==true) { yearsShowing = false;dtu.setYear(parseInt(this.innerText)); refreshStuff(); $('#yearendar')[0].style.display = "none"; $('#calendar')[0].style.display = "block"; } };
 				console.log(this.onclick);
 				i++;
 			}
