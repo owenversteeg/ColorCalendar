@@ -12,10 +12,25 @@ $(document).ready(function() {
     alert('Konami code!');
 });
 
+	bindTouchStuff();
+
 	resizeStuff();
 
 	refreshStuff();
 });
+
+function bindTouchStuff() {
+	var hammer = new Hammer(document.getElementById("calcontainer"));
+
+	hammer.ondragstart = function(ev) { 
+		if (ev.direction == "right") {
+			chMon('p');
+		}
+		if (ev.direction == "left") {
+			chMon('n');
+		}
+	};
+}
 
 function daysInMonth(month,year) {
 	return new Date(year, month, 0).getDate();
