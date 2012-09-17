@@ -9,8 +9,13 @@ $(document).ready(function() {
 	Mousetrap.bind('right', function() { chMon('n'); });
 	
 	Mousetrap.bind('up up down down left right left right b a enter', function() {
-    alert('Konami code!');
-});
+  		alert('Konami code!');
+	});
+
+	Mousetrap.bind('esc', function() {
+ 		refreshYears(parseInt($('#ytext')[0].innerText.substring(0,4)));
+		showYears(); 
+	});
 
 	bindTouchStuff();
 
@@ -22,7 +27,7 @@ $(document).ready(function() {
 });
 
 function bindTouchStuff() {
-	var hammer = new Hammer(document.getElementById("calcontainer"));
+	var hammer = new Hammer(document.getElementById("all"));
 
 	hammer.ondragstart = function(ev) { 
 		if (ev.direction == "right") {
@@ -31,6 +36,12 @@ function bindTouchStuff() {
 		if (ev.direction == "left") {
 			chMon('n');
 		}
+	};
+	var hammer = new Hammer(document.getElementById("all"));
+
+	hammer.ontransformstart = function(ev) { 
+		refreshYears(parseInt($('#ytext')[0].innerText.substring(0,4)));
+		showYears();
 	};
 }
 
@@ -78,17 +89,26 @@ function refreshStuff() {
 	//document.body.style.webkitTransformOrigin = "";	document.body.style.webkitTransform = "";		document.body.style.operaTransformOrigin = "";	document.body.style.operaTransform = "";		document.body.style.MozTransformOrigin = "";	document.body.style.MozTransform = "";		document.body.style.transformOrigin = "";	document.body.style.transform = "";
 }
 
-function refreshYears(start) {
+var go;
+
+function showYears() {
+	$('#calendar')[0].style.display = "none";
 	$('#yearendar')[0].style.display = "block";
+}
+
+function refreshYears(start) {
+	go = false;
+
 	var i = 0;
 	
-	for (var z=1; z<11; z++) {	
-		
+	for (var z=1; z<11; z++) {
 		//console.log($('#tr'+z)[0]);
 		$.each($('#tr'+z)[0].childNodes, function() { 
 			if (this.toString().indexOf('td') != -1) console.log(this);
 			if (this.innerText !== undefined) {
 				this.innerText = start+i;
+				this.onclick=function () { if (go==true) { dtu.setYear(parseInt(this.innerText)); refreshStuff(); $('#yearendar')[0].style.display = "none"; $('#calendar')[0].style.display = "block"; } };
+				console.log(this.onclick);
 				i++;
 			}
 		});
@@ -96,10 +116,11 @@ function refreshYears(start) {
 	
 	$('#ytext')[0].innerText = start + '-' + (start+99);
 	
-	$('#yearendar')[0].style.display = "none";
+	go=true;
 }
 
 function chYr(n) {
+	console.log('chYr'+n);
 	if (n == 'n') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))+100)
 	if (n == 'p') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))-100)
 }
