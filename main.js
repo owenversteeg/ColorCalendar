@@ -24,7 +24,63 @@ $(document).ready(function() {
 	refreshStuff();
 	
 	refreshYears(2001);
+	
+	reloadBubbles();
 });
+
+function reloadBubbles() {
+	//remove all dots
+	var x = 1;
+	$.each($('.dots'), function() { 
+		this.innerHTML = ""; 
+		this.id = 'dots'+x;
+		x++;
+	});
+	x=1;
+	$.each($('.open'), function() { 
+		this.innerHTML = ""; 
+		this.id = 'open'+x;
+		x++;
+	});
+	
+	//create new dots	
+	for (var i=0; i<datas.length; i++) {
+		for (var x=1; x<daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())+1; x++) {
+			//for each day in month
+			var dated = (dtu.getMonth()+1).toString()+'/'+x.toString()+'/'+dtu.getUTCFullYear().toString();
+			if (typeof datas[i][dated] !== 'undefined') {
+				$('#dots'+(x+dfb))[0].innerHTML += '<li class="'+datas[i].color+'"></li> ';
+				
+				//console.log(x+'  '+datas[i].color);
+			}
+		}
+	}
+	
+	//ending
+	for (var x=1; x<daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())+1; x++) {
+		//for each day in month
+		$('#dots'+(x+dfb))[0].innerHTML = '<ul>' + $('#dots'+(x+dfb))[0].innerHTML + '</ul>';
+	}
+	
+	//create new stuffs	
+	for (var i=0; i<datas.length; i++) {
+		for (var x=1; x<daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())+1; x++) {
+			//for each day in month
+			var dated = (dtu.getMonth()+1).toString()+'/'+x.toString()+'/'+dtu.getUTCFullYear().toString();
+			if (typeof datas[i][dated] !== 'undefined') {
+				$('#open'+(x+dfb))[0].innerHTML += '<li class="'+datas[i].color+'">'+datas[i][dated]+'</li> ';
+				
+				//console.log(x+'  '+datas[i].color);
+			}
+		}
+	}
+	
+	//ending
+	for (var x=1; x<daysInMonth(dtu.getMonth()+1,dtu.getUTCFullYear())+1; x++) {
+		//for each day in month
+		$('#open'+(x+dfb))[0].innerHTML = '<ul>' + $('#open'+(x+dfb))[0].innerHTML + '</ul>';
+	}
+}
 
 var yearsShowing = false;
 
@@ -61,12 +117,14 @@ function daysInMonth(month,year) {
 	return new Date(year, month, 0).getDate();
 }
 
+var dfb = 0;
+
 function refreshStuff() {
 	$('#daysmonth').addClass('zoom');
 
 	var fdom = new Date(dtu.getFullYear(), dtu.getMonth(), 1).getDay()+1; //finds first day of month
 	
-	var dfb = 0; //days from beginning that month starts
+	dfb = 0; //days from beginning that month starts
 	
 	var mdtu = moment(dtu);
 	$('#mtext')[0].innerText = moment.months[mdtu.month()]+' '+mdtu.year();
@@ -91,7 +149,7 @@ function refreshStuff() {
 			colorize(i);
 		}
 	}
-	console.log(dfb);
+	//console.log(dfb);
 	if (mdtu.month() == new Date().getMonth()) {
 		$('#day'+(new Date().getDate()+dfb)).addClass('today');
 	}
@@ -121,7 +179,7 @@ function refreshYears(start) {
 			if (this.innerText !== undefined) {
 				this.innerText = start+i;
 				this.onclick=function () { if (go==true) { yearsShowing = false;dtu.setYear(parseInt(this.innerText)); refreshStuff(); $('#yearendar')[0].style.display = "none"; $('#calendar')[0].style.display = "block"; } };
-				console.log(this.onclick);
+				//console.log(this.onclick);
 				i++;
 			}
 		});
@@ -133,7 +191,7 @@ function refreshYears(start) {
 }
 
 function chYr(n) {
-	console.log('chYr'+n);
+	//console.log('chYr'+n);
 	if (n == 'n') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))+100)
 	if (n == 'p') refreshYears(parseInt(($('#ytext')[0].innerText).substring(0,4))-100)
 }
