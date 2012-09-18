@@ -68,7 +68,9 @@ function reloadBubbles() {
 			//for each day in month
 			var dated = (dtu.getMonth()+1).toString()+'/'+x.toString()+'/'+dtu.getUTCFullYear().toString();
 			if (typeof datas[i][dated] !== 'undefined') {
-				$('#open'+(x+dfb))[0].innerHTML += '<li class="'+datas[i].color+'">'+datas[i][dated]+'</li> ';
+				var when = parseInt(datas[i][dated].substr(0,5))+(parseInt(datas[i][dated].substr(0,5).substr(3))/60);
+				when=when*20;
+				$('#open'+(x+dfb))[0].innerHTML += '<li class="'+datas[i].color+'" style="margin-top:'+when+'px;"><p>'+datas[i][dated]+'</p></li> ';
 				
 				//console.log(x+'  '+datas[i].color);
 			}
