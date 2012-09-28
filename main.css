@@ -62,3 +62,7 @@ body {
 #calendar {
 	position: relative;
 }
+
+.open li {
+	position: absolute;
+}
