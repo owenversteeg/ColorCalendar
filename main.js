@@ -221,7 +221,7 @@ $(window).resize(function() {
 
 function resizeStuff() {
 	$.each($('.day'), function() {
-		this.setAttribute('style', 'width:'+($('#calheader')[0].clientWidth-6)/7+'px !important');
+		this.setAttribute('style', 'width:'+($('#calheader')[0].clientWidth-6)/7.1+'px !important');
 	});
 	
 	$.each($('.dayweek'), function() {
